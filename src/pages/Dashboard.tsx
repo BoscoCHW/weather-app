@@ -3,6 +3,7 @@ import { fetchCurrentWeather } from "../utils/api";
 import CityCard from "../components/CityCard";
 import SearchPopup from "../components/SearchPopup";
 import { CITIES } from "../constants";
+import { Container } from 'react-bootstrap';
 
 const Dashboard: React.FC = () => {
   const [displayedCities] = useState<string[]>(
@@ -51,8 +52,8 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-5">
-      <div className="text-center">
+    <Container>
+      <div className="text-center mt-5">
         <h1>Weather Dashboard</h1>
       </div>
 
@@ -120,7 +121,7 @@ const Dashboard: React.FC = () => {
         onSearch={handleSearch}
         cityCards={searchResults.map((result, index) => (<div key={index}>{result}</div>))}
       />
-    </div>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, Accordion } from 'react-bootstrap';
+import { Card, Accordion, Container } from 'react-bootstrap';
 import { fetchCurrentWeather } from '../utils/api';
 
 type RouteParams = {
@@ -36,7 +36,7 @@ const CityDetails: React.FC = () => {
   const [currentWeather] = weather;
 
   return (
-    <div className="container">
+    <Container>
       <div className="jumbotron">
         <h1>{cityName}</h1>
       </div>
@@ -67,7 +67,7 @@ const CityDetails: React.FC = () => {
 
         {/* You can add more accordions for visibility, pressure, humidity, etc. */}
       </Accordion>
-    </div>
+    </Container>
   );
 };
 
