@@ -1,12 +1,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 interface CityCardProps {
   cityName: string;
   temperature: number;
-  description: string;
+  condition: string;
   isFavorite: boolean;
   onToggleFavorite: (cityName: string) => void;
 }
@@ -14,7 +14,7 @@ interface CityCardProps {
 const CityCard: React.FC<CityCardProps> = ({
   cityName,
   temperature,
-  description,
+  condition,
   isFavorite,
   onToggleFavorite,
 }) => {
@@ -24,14 +24,13 @@ const CityCard: React.FC<CityCardProps> = ({
     navigate(`/city/${cityName}`);
   };
 
-  const makeDescription = (temperature: number, description: string) =>
-    `Temperature: ${temperature}°\nCondition: ${description}`;
   return (
-    <Card onClick={goToDetails} style={{ width: "18rem", marginBottom: "1rem" }}>
+    <Card style={{ width: "18rem", marginBottom: "1rem" }}>
       <Card.Body>
-        <Card.Title>{cityName}</Card.Title>
+        <Card.Title onClick={goToDetails}>{cityName}</Card.Title>
         <Card.Text>
-          <pre>{makeDescription(temperature, description)}</pre>
+          <div>{`Temperature: ${temperature}°`}</div>
+          <div>{`Condition: ${condition}°`}</div>
         </Card.Text>
 
         <Button
