@@ -32,8 +32,7 @@ const CityDetails: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const { name, main, weather, wind, clouds, visibility, sys } = weatherData;
-  const [currentWeather] = weather;
+  const { name, main, weather, wind, sys } = weatherData;
 
   return (
     <Container>
@@ -46,7 +45,7 @@ const CityDetails: React.FC = () => {
           <Card.Title>Current Weather</Card.Title>
           <Card.Text>Temperature: {main.temp}</Card.Text>
           <Card.Text>Feels Like: {main.feels_like}</Card.Text>
-          <Card.Text>Condition: {currentWeather.description}</Card.Text>
+          <Card.Text>Condition: {weather.description}</Card.Text>
         </Card.Body>
       </Card>
 
@@ -57,11 +56,11 @@ const CityDetails: React.FC = () => {
             Wind Speed: {wind.speed}, Direction: {wind.deg}
           </Accordion.Body>
         </Accordion.Item>
-
+{/* 
         <Accordion.Item eventKey="1">
           <Accordion.Header>Clouds</Accordion.Header>
           <Accordion.Body>Cloudiness: {clouds.all}%</Accordion.Body>
-        </Accordion.Item>
+        </Accordion.Item> */}
 
         {/* You can add more accordions for visibility, pressure, humidity, etc. */}
       </Accordion>

@@ -45,7 +45,7 @@ const Dashboard: React.FC = () => {
         <CityCard
           cityName={weatherData.name}
           temperature={weatherData.main.temp}
-          condition={weatherData.weather[0].description}
+          condition={weatherData.weather.description}
           isFavorite={favoriteCities.includes(city)}
           onToggleFavorite={toggleFavorite}
         />
@@ -62,7 +62,7 @@ const Dashboard: React.FC = () => {
         <CityCard
           cityName={data.name}
           temperature={data.main.temp}
-          condition={data.weather[0].description}
+          condition={data.weather.description}
           isFavorite={favoriteCities.includes(data.name.toLowerCase())}
           onToggleFavorite={toggleFavorite}
         />
