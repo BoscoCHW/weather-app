@@ -1,7 +1,9 @@
 import axios from "axios";
+import { kelvinToCelcius } from "./math";
+
+const API_KEY = "";
 
 export const fetchCurrentWeather = async (city: string) => {
-  const API_KEY = "";
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
 
   const response = await axios.get(url);
@@ -17,10 +19,10 @@ export const fetchCurrentWeather = async (city: string) => {
   return {
     weather: weather[0],
     main: {
-      temp: temp - 273.15,
-      feels_like: feels_like - 273.15,
-      temp_min: temp_min - 273.15,
-      temp_max: temp_max - 273.15,
+      temp: kelvinToCelcius(temp),
+      feels_like: kelvinToCelcius(feels_like),
+      temp_min: kelvinToCelcius(temp_min),
+      temp_max: kelvinToCelcius(temp_max),
       pressure,
       humidity,
     },
@@ -29,4 +31,13 @@ export const fetchCurrentWeather = async (city: string) => {
     sys,
     name,
   };
+};
+
+export const fetchForecastWeather = async (city: string) => {
+  const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}`;
+
+  const response = await axios.get(url);
+  const { list } = response.data;
+
+  return list;
 };

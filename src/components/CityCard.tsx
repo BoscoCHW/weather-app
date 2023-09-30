@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
-import { useTemperature } from '../TemperatureContext';
+import { useTemperature } from "../TemperatureContext";
 import { celciusToFahrenheit } from "../utils/math";
 
 interface CityCardProps {
   cityName: string;
+  country: string;
   temperature: number;
   condition: string;
   isFavorite: boolean;
@@ -15,6 +16,7 @@ interface CityCardProps {
 
 const CityCard: React.FC<CityCardProps> = ({
   cityName,
+  country,
   temperature,
   condition,
   isFavorite,
@@ -27,7 +29,8 @@ const CityCard: React.FC<CityCardProps> = ({
     navigate(`/city/${cityName}`);
   };
   const { unit } = useTemperature();
-  const displayTemperature = unit === 'C' ? temperature : celciusToFahrenheit(temperature);
+  const displayTemperature =
+    unit === "C" ? temperature : celciusToFahrenheit(temperature);
 
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
@@ -41,10 +44,12 @@ const CityCard: React.FC<CityCardProps> = ({
             color: isHovered ? "blue" : "black",
           }}
         >
-          {cityName}
+          {`${cityName}, ${country}`}
         </Card.Title>
         <Card.Text>
-          <div>{`Temperature: ${displayTemperature.toFixed(1)}°${unit === 'C' ? 'C' : 'F'}`}</div>
+          <div>{`Temperature: ${displayTemperature.toFixed(1)}°${
+            unit === "C" ? "C" : "F"
+          }`}</div>
           <div>{`Condition: ${condition}`}</div>
         </Card.Text>
 
