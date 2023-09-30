@@ -24,7 +24,7 @@ const SearchPopup: React.FC<SearchPopupProps> = ({
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header>
-        <Modal.Title className='m-auto'>
+        <Modal.Title className="m-auto">
           <div className="input-group d-flex m-auto">
             <span className="input-group-text">Search</span>
             <input

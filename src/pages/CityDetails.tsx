@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, Accordion, Container } from 'react-bootstrap';
-import { fetchCurrentWeather } from '../utils/api';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Card, Accordion, Container } from "react-bootstrap";
+import { fetchCurrentWeather } from "../utils/api";
 
 type RouteParams = {
   cityName: string;
-}
+};
 
 const CityDetails: React.FC = () => {
   const { cityName } = useParams<RouteParams>() as any;
@@ -60,9 +60,7 @@ const CityDetails: React.FC = () => {
 
         <Accordion.Item eventKey="1">
           <Accordion.Header>Clouds</Accordion.Header>
-          <Accordion.Body>
-            Cloudiness: {clouds.all}%
-          </Accordion.Body>
+          <Accordion.Body>Cloudiness: {clouds.all}%</Accordion.Body>
         </Accordion.Item>
 
         {/* You can add more accordions for visibility, pressure, humidity, etc. */}
