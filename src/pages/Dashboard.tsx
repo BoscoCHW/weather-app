@@ -3,7 +3,7 @@ import { fetchCurrentWeather } from "../utils/api";
 import CityCard from "../components/CityCard";
 import SearchPopup from "../components/SearchPopup";
 import { CITIES } from "../constants";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
 const Dashboard: React.FC = () => {
   const [displayedCities] = useState<string[]>(
@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
       const allData = await Promise.all(
         displayedCities.map((city) => fetchCurrentWeather(city))
       );
-      setAllWeatherData(prev => [...prev, ...allData]);
+      setAllWeatherData((prev) => [...prev, ...allData]);
     };
 
     fetchDisplayedCities();
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
       <CityCard
         cityName={data.name}
         temperature={data.main.temp}
-        description={data.weather[0].description}
+        condition={data.weather[0].description}
         isFavorite={favoriteCities.includes(data.name.toLowerCase())}
         onToggleFavorite={toggleFavorite}
       />
@@ -66,46 +66,23 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 
-      <div className='mb-5'>
+      <div className="mb-5">
         <h2>Favourite Cities</h2>
         <div className="d-flex flex-wrap justify-content-start gap-3">
-          {favoriteCities.length <= allWeatherData.length &&
-            favoriteCities.map((city, index) => {
-              const weatherData = allWeatherData.find(
-                (data) => data.name.toLowerCase() === city
-              );
-              return (
-                <div key={index}>
-                  <CityCard
-                    cityName={weatherData.name}
-                    temperature={weatherData.main.temp}
-                    description={weatherData.weather[0].description}
-                    isFavorite={true}
-                    onToggleFavorite={toggleFavorite}
-                  />
-                </div>
-              );
-            })}
-        </div>
-      </div>
-
-      <div>
-        <h2>Explore</h2>
-        <div className="d-flex flex-wrap justify-content-start gap-3">
-          {displayedCities.length <= allWeatherData.length &&
-            displayedCities
-              .filter((c) => !favoriteCities.includes(c))
-              .map((city, index) => {
+          {favoriteCities.length === 0
+            ? `You don't have any favorite city.`
+            : favoriteCities.map((city, index) => {
                 const weatherData = allWeatherData.find(
                   (data) => data.name.toLowerCase() === city
                 );
+                if (!weatherData) return null;
                 return (
                   <div key={index}>
                     <CityCard
                       cityName={weatherData.name}
                       temperature={weatherData.main.temp}
-                      description={weatherData.weather[0].description}
-                      isFavorite={false}
+                      condition={weatherData.weather[0].description}
+                      isFavorite={true}
                       onToggleFavorite={toggleFavorite}
                     />
                   </div>
@@ -114,12 +91,38 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      
+      <div>
+        <h2>Explore</h2>
+        <div className="d-flex flex-wrap justify-content-start gap-3">
+          {displayedCities
+            .filter((c) => !favoriteCities.includes(c))
+            .map((city, index) => {
+              const weatherData = allWeatherData.find(
+                (data) => data.name.toLowerCase() === city
+              );
+              if (!weatherData) return null;
+              return (
+                <div key={index}>
+                  <CityCard
+                    cityName={weatherData.name}
+                    temperature={weatherData.main.temp}
+                    condition={weatherData.weather[0].description}
+                    isFavorite={false}
+                    onToggleFavorite={toggleFavorite}
+                  />
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
       <SearchPopup
         show={showSearchPopup}
         onHide={() => setShowSearchPopup(false)}
         onSearch={handleSearch}
-        cityCards={searchResults.map((result, index) => (<div key={index}>{result}</div>))}
+        cityCards={searchResults.map((result, index) => (
+          <div key={index}>{result}</div>
+        ))}
       />
     </Container>
   );
