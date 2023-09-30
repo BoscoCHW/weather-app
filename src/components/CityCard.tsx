@@ -41,7 +41,7 @@ const CityCard: React.FC<CityCardProps> = ({
         </Card.Title>
         <Card.Text>
           <div>{`Temperature: ${temperature}°`}</div>
-          <div>{`Condition: ${condition}°`}</div>
+          <div>{`Condition: ${condition}`}</div>
         </Card.Text>
 
         <Button

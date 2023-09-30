@@ -35,20 +35,42 @@ const Dashboard: React.FC = () => {
     });
   };
 
+  const cityToCard = (city: string, index: number) => {
+    const weatherData = allWeatherData.find(
+      (data) => data.name.toLowerCase() === city
+    );
+    if (!weatherData) return null;
+    return (
+      <div key={index}>
+        <CityCard
+          cityName={weatherData.name}
+          temperature={weatherData.main.temp}
+          condition={weatherData.weather[0].description}
+          isFavorite={favoriteCities.includes(city)}
+          onToggleFavorite={toggleFavorite}
+        />
+      </div>
+    );
+  };
+
   const handleSearch = async (query: string) => {
     // Perform the API call to search for the city and update `searchResults`.
-    const data = await fetchCurrentWeather(query);
-    setAllWeatherData((prev) => [...prev, data]);
-    const cityCard = (
-      <CityCard
-        cityName={data.name}
-        temperature={data.main.temp}
-        condition={data.weather[0].description}
-        isFavorite={favoriteCities.includes(data.name.toLowerCase())}
-        onToggleFavorite={toggleFavorite}
-      />
-    );
-    setSearchResults((prev) => [...prev, cityCard]);
+    try {
+      const data = await fetchCurrentWeather(query);
+      setAllWeatherData((prev) => [...prev, data]);
+      const cityCard = (
+        <CityCard
+          cityName={data.name}
+          temperature={data.main.temp}
+          condition={data.weather[0].description}
+          isFavorite={favoriteCities.includes(data.name.toLowerCase())}
+          onToggleFavorite={toggleFavorite}
+        />
+      );
+      setSearchResults([cityCard]);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+    }
   };
 
   return (
@@ -71,23 +93,7 @@ const Dashboard: React.FC = () => {
         <div className="d-flex flex-wrap justify-content-start gap-3">
           {favoriteCities.length === 0
             ? `You don't have any favorite city.`
-            : favoriteCities.map((city, index) => {
-                const weatherData = allWeatherData.find(
-                  (data) => data.name.toLowerCase() === city
-                );
-                if (!weatherData) return null;
-                return (
-                  <div key={index}>
-                    <CityCard
-                      cityName={weatherData.name}
-                      temperature={weatherData.main.temp}
-                      condition={weatherData.weather[0].description}
-                      isFavorite={true}
-                      onToggleFavorite={toggleFavorite}
-                    />
-                  </div>
-                );
-              })}
+            : favoriteCities.map(cityToCard)}
         </div>
       </div>
 
@@ -96,23 +102,7 @@ const Dashboard: React.FC = () => {
         <div className="d-flex flex-wrap justify-content-start gap-3">
           {displayedCities
             .filter((c) => !favoriteCities.includes(c))
-            .map((city, index) => {
-              const weatherData = allWeatherData.find(
-                (data) => data.name.toLowerCase() === city
-              );
-              if (!weatherData) return null;
-              return (
-                <div key={index}>
-                  <CityCard
-                    cityName={weatherData.name}
-                    temperature={weatherData.main.temp}
-                    condition={weatherData.weather[0].description}
-                    isFavorite={false}
-                    onToggleFavorite={toggleFavorite}
-                  />
-                </div>
-              );
-            })}
+            .map(cityToCard)}
         </div>
       </div>
 

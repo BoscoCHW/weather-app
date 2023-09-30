@@ -37,8 +37,8 @@ const CityDetails: React.FC = () => {
 
   return (
     <Container>
-      <div className="jumbotron">
-        <h1>{cityName}</h1>
+      <div className="text-center m-4">
+        <h1>{name}</h1>
       </div>
 
       <Card>
