@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { useTemperature } from '../TemperatureContext';
+import { celciusToFahrenheit } from "../utils/math";
 
 interface CityCardProps {
   cityName: string;
@@ -26,7 +27,7 @@ const CityCard: React.FC<CityCardProps> = ({
     navigate(`/city/${cityName}`);
   };
   const { unit } = useTemperature();
-  const displayTemperature = unit === 'C' ? temperature : (temperature * 9/5) + 32;
+  const displayTemperature = unit === 'C' ? temperature : celciusToFahrenheit(temperature);
 
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
