@@ -1,7 +1,7 @@
 import axios from "axios";
 import { kelvinToCelcius } from "./math";
 
-const API_KEY = "";
+const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 export const fetchCurrentWeather = async (city: string) => {
   const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
