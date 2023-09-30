@@ -1,46 +1,62 @@
-# Getting Started with Create React App
+# Weather Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a single-page application that allows users to view the current weather in various cities and save their favorite cities for quick access. Built with React.js, TypeScript, and Bootstrap.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- Search for cities and view current weather conditions.
+- Save favorite cities for easy access.
+- Click on a city to view detailed weather information, including 3-hour/5-day forecasts, wind, rain, and more.
+- Toggle between Fahrenheit and Celsius.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js >= 14.x
+- Yarn >= 1.22.x
 
-### `yarn test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/weather-dashboard.git
+   ```
 
-### `yarn build`
+2. Navigate to the project folder:
+   ```bash
+   cd weather-dashboard
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install dependencies:
+   ```bash
+   yarn install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Configuration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Create a \`.env\` file in the project root.
+2. Add your OpenWeatherMap API Key:
+   ```
+   REACT_APP_OPEN_WEATHER_API_KEY=your_api_key_here
+   ```
 
-### `yarn eject`
+## Running the Development Server
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To start the development server:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This will open a new browser window pointing to \`http://localhost:3000/\`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Assumptions
 
-## Learn More
+- The OpenWeatherMap API Key is confidential and should not be exposed. Therefore, it's stored as an environment variable.
+- The app is optimized for the latest versions of Chrome, Firefox, and Safari. Compatibility with Internet Explorer is not guaranteed.
+- The app is made during a time constraint so the code might not be in its most optimized form. 
+  
+## Additional Information
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses [Bootstrap](https://react-bootstrap.github.io/) for styling components.
