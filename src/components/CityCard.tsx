@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ const CityCard: React.FC<CityCardProps> = ({
   isFavorite,
   onToggleFavorite,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
   const goToDetails = () => {
@@ -27,7 +28,17 @@ const CityCard: React.FC<CityCardProps> = ({
   return (
     <Card style={{ width: "18rem", marginBottom: "1rem" }}>
       <Card.Body>
-        <Card.Title onClick={goToDetails}>{cityName}</Card.Title>
+        <Card.Title
+          onClick={goToDetails}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            cursor: isHovered ? "pointer" : "initial",
+            color: isHovered ? "blue" : "black",
+          }}
+        >
+          {cityName}
+        </Card.Title>
         <Card.Text>
           <div>{`Temperature: ${temperature}°`}</div>
           <div>{`Condition: ${condition}°`}</div>
