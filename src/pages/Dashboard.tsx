@@ -51,7 +51,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-5">
       <div className="text-center">
         <h1>Weather Dashboard</h1>
       </div>
@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 
-      <div>
+      <div className='mb-5'>
         <h2>Favourite Cities</h2>
         <div className="d-flex flex-wrap justify-content-start gap-3">
           {favoriteCities.length <= allWeatherData.length &&

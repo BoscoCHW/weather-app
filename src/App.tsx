@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/city/:name" element={<CityDetails />} />
+        <Route path="/city/:cityName" element={<CityDetails />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
