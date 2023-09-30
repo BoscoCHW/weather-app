@@ -47,9 +47,15 @@ const SearchPopup: React.FC<SearchPopupProps> = ({
           </div>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <div className="d-flex flex-wrap">{cityCards}</div>
-      </Modal.Body>
+      {cityCards.length === 0 ? (
+        <Modal.Body className="text-center">
+          <h3>No result found.</h3>
+        </Modal.Body>
+      ) : (
+        <Modal.Body>
+          <div className="d-flex flex-wrap">{cityCards}</div>
+        </Modal.Body>
+      )}
     </Modal>
   );
 };

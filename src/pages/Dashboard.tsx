@@ -69,7 +69,7 @@ const Dashboard: React.FC = () => {
       );
       setSearchResults([cityCard]);
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      setSearchResults([]);
     }
   };
 
